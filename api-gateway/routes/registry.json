@@ -1,0 +1,54 @@
+{
+  "services": {
+    "usermanagement": {
+      "loadBalanceStrategy": "ROUND_ROBIN",
+      "index": 0,
+      "instances": [
+        {
+          "apiName": "usermanagement",
+          "protocol": "http",
+          "host": "localhost",
+          "port": "3001",
+          "url": "http://localhost:3001/",
+          "enabled": true
+        },
+        {
+          "apiName": "usermanagement",
+          "protocol": "http",
+          "host": "localhost",
+          "port": "3002",
+          "url": "http://localhost:3002/",
+          "enabled": false
+        }
+      ]
+    },
+    "customermanagement": {
+      "loadBalanceStrategy": "ROUND_ROBIN",
+      "index": 1,
+      "instances": [
+        {
+          "apiName": "customermanagement",
+          "protocol": "http",
+          "host": "localhost",
+          "port": "4001",
+          "url": "http://localhost:4001/",
+          "enabled": true
+        }
+      ]
+    },
+    "salestracking": {
+      "loadBalanceStrategy": "ROUND_ROBIN",
+      "index": 2,
+      "instances": [
+        {
+          "apiName": "salestracking",
+          "protocol": "http",
+          "host": "localhost",
+          "port": "5001",
+          "url": "http://localhost:5001/",
+          "enabled": true
+        }
+      ]
+    }
+  }
+}

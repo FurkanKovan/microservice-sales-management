@@ -1,0 +1,65 @@
+services:
+  user-management:
+    build:
+      context: ./user-management
+      dockerfile: Dockerfile
+    ports:
+      - "3001:3001"
+    environment:
+      - PROTOCOL=http
+      - HOST=localhost
+      - PORT=3001
+      - SECRET_KEY=example_secret_key
+      - BCRYPT_SALT=10
+      - API_GATEWAY_URL=http://localhost:3000
+    networks:
+      - sales-management-network
+
+  customer-management:
+    build:
+      context: ./customer-management
+      dockerfile: Dockerfile
+    ports:
+      - "4001:4001"
+    environment:
+      - PROTOCOL=http
+      - HOST=localhost
+      - PORT=4001
+      - SECRET_KEY=example_secret_key
+      - API_GATEWAY_URL=http://localhost:3000
+    networks:
+      - sales-management-network
+
+  sales-tracking:
+    build:
+      context: ./sales-tracking
+      dockerfile: Dockerfile
+    ports:
+      - "5001:5001"
+    environment:
+      - PROTOCOL=http
+      - HOST=localhost
+      - PORT=5001
+      - API_GATEWAY_URL=http://localhost:3000
+    networks:
+      - sales-management-network
+
+  api-gateway:
+    build:
+      context: ./api-gateway
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - PORT=3000
+      - SECRET_KEY=example_secret_key
+    depends_on:
+      - user-management
+      - customer-management
+      - sales-tracking
+    networks:
+      - sales-management-network
+
+networks:
+  sales-management-network:
+    driver: bridge
