@@ -15,7 +15,7 @@ For the sake of time and simplicity, there are many things that I decided not to
 - [SQLite](https://www.sqlite.org/) - Database
 - [Docker](https://www.docker.com/) - Containerization
 
-## Prerequisites
+## Prerequisites and Installment
 Make sure to install [Node.js](https://nodejs.org/en) (at least version 18 or higher). To check your installed version:
 
     node -v
